@@ -53,4 +53,15 @@ public class EventService {
 						
 	}
 
+	public EventDTO insert(EventDTO dto) {
+		Event entity = new Event();
+		entity.setName(dto.getName());
+		entity.setDate(dto.getDate());
+		entity.setUrl(dto.getUrl());
+		City city = repositoryCity.getOne(dto.getCityId());
+		entity.setCity(city);
+		entity = repository.save(entity);
+		return new EventDTO(entity);
+	}
+	
 }
