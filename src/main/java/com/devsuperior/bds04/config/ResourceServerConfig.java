@@ -42,11 +42,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			http.headers().frameOptions().disable();
 			
 		}
-		
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
 		.antMatchers(HttpMethod.POST, CLIENT_POST).hasAnyRole("CLIENT", "ADMIN")
-		.anyRequest().hasAnyRole("ADMIN");
+		.antMatchers(HttpMethod.GET, CLIENT_POST).permitAll()
+		.antMatchers().hasRole("ADMIN")
+		.anyRequest().authenticated();
 				
 	}
 	
