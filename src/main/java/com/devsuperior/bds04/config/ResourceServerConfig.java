@@ -34,7 +34,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStore);
 	}
-
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
@@ -46,11 +45,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		}
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.POST, CLIENT_POST).hasAnyRole("CLIENT", "ADMIN")
 		.antMatchers(HttpMethod.GET, CLIENT_GET).permitAll()
-		.antMatchers().hasRole("ADMIN")
-		.anyRequest().authenticated();
-				
+		.antMatchers(HttpMethod.POST, CLIENT_POST).hasAnyRole("CLIENT", "ADMIN")
+		.anyRequest().hasRole("ADMIN");
+			
 	}
 	
 }
