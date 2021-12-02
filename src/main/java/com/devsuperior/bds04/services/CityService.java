@@ -39,7 +39,7 @@ public class CityService {
 	}
 
 	
-	public void delete(Long id) {
+	/*public void delete(Long id) {
 		try {
 			repository.deleteById(id);
 		}
@@ -49,6 +49,6 @@ public class CityService {
 		catch (DataIntegrityViolationException e) {
 			throw new DatabaseException("Integrity violation");
 		}
-	}
+	}*/
 
 }
